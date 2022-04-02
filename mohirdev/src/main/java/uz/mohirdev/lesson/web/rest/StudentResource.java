@@ -1,10 +1,8 @@
 package uz.mohirdev.lesson.web.rest;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import uz.mohirdev.lesson.model.Student;
 
 @RestController
 @RequestMapping("/api")
@@ -19,5 +17,15 @@ public class StudentResource {
     @RequestMapping(value = "/students", method = RequestMethod.GET)
     public ResponseEntity hellow(){
         return ResponseEntity.ok("Ar-Roxman, Ar-Raxiym");
+    }
+
+    @PostMapping("/students")
+    public ResponseEntity createStudent(@RequestBody Student student){
+        return ResponseEntity.ok(student);
+    }
+
+    @PutMapping("/students")
+    public ResponseEntity updateStudent(@RequestBody Student student){
+        return ResponseEntity.ok(student);
     }
 }
