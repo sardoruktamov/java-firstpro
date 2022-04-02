@@ -19,11 +19,13 @@ public class StudentResource {
         return ResponseEntity.ok("Ar-Roxman, Ar-Raxiym");
     }
 
+    // POST
     @PostMapping("/students")
     public ResponseEntity createStudent(@RequestBody Student student){
         return ResponseEntity.ok(student);
     }
 
+    //PUT
     @PutMapping("/students")
     public ResponseEntity updateStudent(@RequestBody Student student){
         return ResponseEntity.ok(student);
