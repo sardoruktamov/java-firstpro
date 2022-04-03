@@ -61,6 +61,11 @@ public class StudentResource {
         students.add(new Student(3L, "Sardor3", "Uktamov3", 28));
         return  ResponseEntity.ok(students);
     }
+
+    @DeleteMapping("/students/{id}/delete")
+    public ResponseEntity delete(@PathVariable Long id){
+        return ResponseEntity.ok(id+"-malumot uchirildi!");
+    }
 }
 
 
