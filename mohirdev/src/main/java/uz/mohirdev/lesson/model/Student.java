@@ -9,16 +9,27 @@ public class Student {
     private Long id;
     private String name;
 
-//    @JsonProperty("last_name")
+    @JsonProperty("last_name")
     private String lastName;
+
+    private Course course;
+
     private int age;
 
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 
 
-    public Student(Long id, String name, String lastName, Integer age) {
+    public Student(Long id, String name, String lastName, Course course, int age) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
+        this.course = course;
         this.age = age;
     }
 
