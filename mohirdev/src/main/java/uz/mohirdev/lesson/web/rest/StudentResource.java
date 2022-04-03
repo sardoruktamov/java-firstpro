@@ -28,6 +28,11 @@ public class StudentResource {
     public ResponseEntity createStudent(@RequestBody Student student){
         return ResponseEntity.ok(student);
     }
+    // POST  list holatida POST qilish
+    @PostMapping("/students/list")
+    public ResponseEntity createAll(@RequestBody List<Student> students){
+        return ResponseEntity.ok(students);
+    }
 
     //PUT--1
     @PutMapping("/students")
