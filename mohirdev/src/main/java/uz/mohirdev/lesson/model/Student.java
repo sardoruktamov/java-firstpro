@@ -3,14 +3,19 @@ package uz.mohirdev.lesson.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Student {
+    public Student() {
+    }
+
     private Long id;
     private String name;
 
-    @JsonProperty("last_name")
+//    @JsonProperty("last_name")
     private String lastName;
     private int age;
 
-    public Student(Long id, String name, String lastName, int age) {
+
+
+    public Student(Long id, String name, String lastName, Integer age) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
