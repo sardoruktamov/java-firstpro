@@ -18,10 +18,10 @@ public class StudentResource {
 //        return ResponseEntity.ok("Ar-Roxman, Ar-Raxiym");
 //    }
     // Get 2-usul
-//    @RequestMapping(value = "/students", method = RequestMethod.GET)
-//    public ResponseEntity hellow(){
-//        return ResponseEntity.ok("Ar-Roxman, Ar-Raxiym");
-//    }
+    @RequestMapping(value = "/students/list", method = RequestMethod.GET)
+    public ResponseEntity hellow(){
+        return ResponseEntity.ok("Ar-Roxman, Ar-Raxiym");
+    }
 
     // POST
     @PostMapping("/students")
