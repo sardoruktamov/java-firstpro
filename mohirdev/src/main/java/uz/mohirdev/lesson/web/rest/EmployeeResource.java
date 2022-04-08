@@ -34,4 +34,9 @@ public class EmployeeResource {
         return ResponseEntity.ok(result);
     }
 
+    @DeleteMapping("/employees/{id}")
+    public ResponseEntity delete(@PathVariable Long id){
+        employeeService.delete(id);
+        return ResponseEntity.ok("Malumot o`chirildi!");
+    }
 }
