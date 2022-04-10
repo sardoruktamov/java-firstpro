@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import uz.mohirdev.lesson.entity.Employee;
 import uz.mohirdev.lesson.repository.EmployeeRepository;
 
+import java.util.Optional;
+
 @Service
 public class EmployeeService {
 
@@ -22,8 +24,11 @@ public class EmployeeService {
     }
 
     public Employee findById(Long id){
-        Employee employee = employeeRepository.findById(id).get();
-        return employee;
+        Optional<Employee> optional = employeeRepository.findById(id);
+        if(optional.isPresent()){
+            return optional.get();
+        }
+        return null;
     }
 
 }

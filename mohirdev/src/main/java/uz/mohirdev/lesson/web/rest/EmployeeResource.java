@@ -36,6 +36,9 @@ public class EmployeeResource {
 
     @GetMapping("/employees/{id}")
     public ResponseEntity<Employee> getOne(@PathVariable Long id){
+        if (employeeService.findById(id) == null){
+            return ResponseEntity.badRequest().build();
+        }
         Employee result = employeeService.findById(id);
         return ResponseEntity.ok(result);
     }
