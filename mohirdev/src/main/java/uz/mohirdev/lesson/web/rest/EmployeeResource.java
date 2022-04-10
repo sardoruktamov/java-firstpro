@@ -34,6 +34,12 @@ public class EmployeeResource {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/employees/{id}")
+    public ResponseEntity<Employee> getOne(@PathVariable Long id){
+        Employee result = employeeService.findById(id);
+        return ResponseEntity.ok(result);
+    }
+
     @DeleteMapping("/employees/{id}")
     public ResponseEntity delete(@PathVariable Long id){
         employeeService.delete(id);
