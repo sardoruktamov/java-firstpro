@@ -43,6 +43,12 @@ public class EmployeeResource {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/employees")
+    public ResponseEntity getAll(){
+        List<Employee> employees = employeeService.findAll();
+        return ResponseEntity.ok(employees);
+    }
+
     @DeleteMapping("/employees/{id}")
     public ResponseEntity delete(@PathVariable Long id){
         employeeService.delete(id);
