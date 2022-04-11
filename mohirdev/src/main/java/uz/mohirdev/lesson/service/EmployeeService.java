@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import uz.mohirdev.lesson.entity.Employee;
 import uz.mohirdev.lesson.repository.EmployeeRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,6 +30,11 @@ public class EmployeeService {
             return optional.get();
         }
         return null;
+    }
+
+    public List<Employee> findAll(){
+        List<Employee> employees = employeeRepository.findAll();
+        return employees;
     }
 
 }
