@@ -33,7 +33,8 @@ public class EmployeeService {
     }
 
     public List<Employee> findAll(String name){
-        List<Employee> employees = employeeRepository.findAll(name);
+//        List<Employee> employees = employeeRepository.findAll(name);  // name orqali olishning 1-usuli
+        List<Employee> employees = employeeRepository.findAllByName(name); // name orqali olishning 2-usuli
         return employees;
     }
 
