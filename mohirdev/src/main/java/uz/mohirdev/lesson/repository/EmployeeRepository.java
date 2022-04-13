@@ -13,9 +13,17 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     // findAll() methodini qo`lda yozamiz va shart qoyamiz
     // name orqali olishning 1-usuli
-    @Query("select e from Employee e where e.name = :name")
-    List<Employee> findAll(@Param("name") String name);
+    @Query("select e from Employee e where e.name = :name and e.lastName = :lastName")
+    List<Employee> findAll(@Param("name") String name,
+                           @Param("lastName") String lastName);
 
     //name orqali olishning 2-usuli
     List<Employee> findAllByName(String name);
+
+    //name va lastName orqali olish
+    List<Employee> findAllByNameAndLastName(String name, String lastName);
+
+    // Native Query
+    @Query(value = "SELECT * from employee e where e.name = :name", nativeQuery = true)
+    List<Employee> findAll(@Param("name") String name);
 }
