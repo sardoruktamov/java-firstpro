@@ -32,8 +32,8 @@ public class EmployeeService {
         return null;
     }
 
-    public List<Employee> findAll(){
-        List<Employee> employees = employeeRepository.findAll();
+    public List<Employee> findAll(String name){
+        List<Employee> employees = employeeRepository.findAll(name);
         return employees;
     }
 
