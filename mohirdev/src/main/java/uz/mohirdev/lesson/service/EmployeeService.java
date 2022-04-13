@@ -32,9 +32,11 @@ public class EmployeeService {
         return null;
     }
 
-    public List<Employee> findAll(String name){
+    public List<Employee> findAll(String name, String lastName){
 //        List<Employee> employees = employeeRepository.findAll(name);  // name orqali olishning 1-usuli
-        List<Employee> employees = employeeRepository.findAllByName(name); // name orqali olishning 2-usuli
+//        List<Employee> employees = employeeRepository.findAllByName(name); // name orqali olishning 2-usuli
+//        List<Employee> employees = employeeRepository.findAllByNameAndLastName(name, lastName); // name va lastName orqali olish
+        List<Employee> employees = employeeRepository.findAll(name); // native query orqali
         return employees;
     }
 
