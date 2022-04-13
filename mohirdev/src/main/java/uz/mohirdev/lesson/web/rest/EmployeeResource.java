@@ -44,8 +44,8 @@ public class EmployeeResource {
     }
 
     @GetMapping("/employees")
-    public ResponseEntity getAll(){
-        List<Employee> employees = employeeService.findAll();
+    public ResponseEntity getAll(@RequestParam String name){
+        List<Employee> employees = employeeService.findAll(name);
         return ResponseEntity.ok(employees);
     }
 
