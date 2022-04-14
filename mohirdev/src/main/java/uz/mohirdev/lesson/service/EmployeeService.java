@@ -42,7 +42,9 @@ public class EmployeeService {
 
     // LIKE dan foydalanb name orqali qidirish
     public List<Employee> findByQueryParam(String name){
-        return employeeRepository.findAllByNameLike(name);
+//        return employeeRepository.findAllByNameLike(name);
+//        return employeeRepository.findAllByNameLikeJPA(name); //JPA query
+        return employeeRepository.findAllByNameLikeNative(name);   // Native Query
     }
 
 }
