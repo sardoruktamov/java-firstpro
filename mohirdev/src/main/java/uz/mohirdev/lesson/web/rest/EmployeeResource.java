@@ -52,7 +52,8 @@ public class EmployeeResource {
     // LIKE dan foydalanb name orqali qidirish
     @GetMapping("/employees/search")
     public ResponseEntity getAllQueryParam(@RequestParam String name){
-        List<Employee> result = employeeService.findByQueryParam(name);
+//        List<Employee> result = employeeService.findByQueryParam(name); //LIKE
+        List<Employee> result = employeeService.findByOther(name);
         return ResponseEntity.ok(result);
     }
 

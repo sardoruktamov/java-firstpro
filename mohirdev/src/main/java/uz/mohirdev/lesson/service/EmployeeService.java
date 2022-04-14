@@ -47,4 +47,9 @@ public class EmployeeService {
         return employeeRepository.findAllByNameLikeNative(name);   // Native Query
     }
 
+    // Startwith,
+    public List<Employee> findByOther(String name){
+        return employeeRepository.findAllByNameStartingWith(name);   // Native Query
+    }
+
 }
