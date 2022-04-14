@@ -49,6 +49,13 @@ public class EmployeeResource {
         return ResponseEntity.ok(employees);
     }
 
+    // LIKE dan foydalanb name orqali qidirish
+    @GetMapping("/employees/search")
+    public ResponseEntity getAllQueryParam(@RequestParam String name){
+        List<Employee> result = employeeService.findByQueryParam(name);
+        return ResponseEntity.ok(result);
+    }
+
     @DeleteMapping("/employees/{id}")
     public ResponseEntity delete(@PathVariable Long id){
         employeeService.delete(id);
