@@ -49,7 +49,8 @@ public class EmployeeService {
 
     // Startwith,
     public List<Employee> findByOther(String name){
-        return employeeRepository.findAllByNameStartingWith(name);   // Native Query
+//        return employeeRepository.findAllByNameStartingWith(name);
+        return employeeRepository.findAllByNameStartingWithJPA(name); //Startwith    jpaquery
     }
 
 }
