@@ -40,4 +40,9 @@ public class EmployeeService {
         return employees;
     }
 
+    // LIKE dan foydalanb name orqali qidirish
+    public List<Employee> findByQueryParam(String name){
+        return employeeRepository.findAllByNameLike(name);
+    }
+
 }
