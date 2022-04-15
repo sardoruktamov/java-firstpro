@@ -47,10 +47,14 @@ public class EmployeeService {
         return employeeRepository.findAllByNameLikeNative(name);   // Native Query
     }
 
-    // Startwith,
+    // Startwith,Endingwith orasida kelsa,
     public List<Employee> findByOther(String name){
 //        return employeeRepository.findAllByNameStartingWith(name);
-        return employeeRepository.findAllByNameStartingWithJPA(name); //Startwith    jpaquery
+//        return employeeRepository.findAllByNameStartingWithJPA(name); //Startwith    jpaquery
+
+//        return employeeRepository.findAllByNameEndingWith(name); //Endingwith
+//        return employeeRepository.findAllByNameEndingwithWithJPA(name); //Allwith    jpaquery
+        return employeeRepository.findAllByNameEndingwithJPANative(name); //Allwith    jpaquery
     }
 
 }
