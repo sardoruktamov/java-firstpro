@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import uz.mohirdev.lesson.entity.Employee;
 
+import javax.persistence.OrderBy;
 import java.util.List;
 
 @Repository
@@ -53,4 +54,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     //Allwith    nativequery
     @Query(value = "SELECT * from employee e where e.name like %:name%", nativeQuery = true)
     List<Employee> findAllByNameEndingwithJPANative(String name);
+
+    //Endingwith
+    List<Employee> findAllByNameEndingWithOrderByIdAsc(String name);
 }

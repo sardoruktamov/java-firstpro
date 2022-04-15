@@ -54,7 +54,8 @@ public class EmployeeService {
 
 //        return employeeRepository.findAllByNameEndingWith(name); //Endingwith
 //        return employeeRepository.findAllByNameEndingwithWithJPA(name); //Allwith    jpaquery
-        return employeeRepository.findAllByNameEndingwithJPANative(name); //Allwith    jpaquery
+//        return employeeRepository.findAllByNameEndingwithJPANative(name); //Allwith    jpaquery
+        return employeeRepository.findAllByNameEndingWithOrderByIdAsc(name); //Allwith    jpaquery
     }
 
 }
