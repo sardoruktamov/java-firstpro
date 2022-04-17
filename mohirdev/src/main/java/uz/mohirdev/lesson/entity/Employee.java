@@ -1,9 +1,6 @@
 package uz.mohirdev.lesson.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -15,6 +12,17 @@ public class Employee implements Serializable {
     private String name;
     private String lastName;
     private String email;
+
+    @ManyToOne
+    private Department department;
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
     public Long getId() {
         return id;
