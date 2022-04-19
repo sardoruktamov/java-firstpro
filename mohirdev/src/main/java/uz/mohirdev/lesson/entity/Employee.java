@@ -16,7 +16,8 @@ public class Employee implements Serializable {
     @ManyToOne
     private Department department;
 
-    @OneToOne
+    @OneToOne(optional = false) //nullable = false va optional = false  larni vazifasi birxil(yani null!=0)
+    @JoinColumn(name = "account_id", unique = true, nullable = false)
     private Account account;
 
 
