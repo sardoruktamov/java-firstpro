@@ -16,13 +16,9 @@ public class Employee implements Serializable {
     @ManyToOne
     private Department department;
 
-    public Department getDepartment() {
-        return department;
-    }
+    @OneToOne
+    private Account account;
 
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
 
     public Long getId() {
         return id;
@@ -55,4 +51,21 @@ public class Employee implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
 }
