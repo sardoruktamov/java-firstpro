@@ -10,7 +10,9 @@ public class Employee implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(length = 150)
     private String lastName;
+    @Column(length = 50)
     private String email;
 
     @ManyToOne
