@@ -1,6 +1,9 @@
 package uz.mohirdev.lesson.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -12,7 +15,11 @@ public class Employee implements Serializable {
     private String name;
     @Column(length = 150)
     private String lastName;
-    @Column(length = 50)
+
+    @NotNull    // javani o`zi uchun
+    @Size(min = 5, max = 50)    // javani o`zi uchun
+    @Column(length = 50, unique = true)    // javani o`zi uchun
+    @Email
     private String email;
 
     @ManyToOne
