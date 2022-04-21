@@ -5,6 +5,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 public class Employee implements Serializable {
@@ -29,6 +30,8 @@ public class Employee implements Serializable {
     @JoinColumn(name = "account_id", unique = true, nullable = false)
     private Account account;
 
+    @OneToMany
+    private Set<Item> items;
 
     public Long getId() {
         return id;
@@ -78,4 +81,11 @@ public class Employee implements Serializable {
         this.department = department;
     }
 
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }
 }
