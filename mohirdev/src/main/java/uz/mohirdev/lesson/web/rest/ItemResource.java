@@ -1,10 +1,7 @@
 package uz.mohirdev.lesson.web.rest;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uz.mohirdev.lesson.entity.Item;
 import uz.mohirdev.lesson.service.ItemService;
 
@@ -22,5 +19,15 @@ public class ItemResource {
     public ResponseEntity create(@RequestBody Item item){
         Item resoult = itemService.save(item);
         return ResponseEntity.ok(resoult);
+    }
+
+    @PutMapping("/items")
+    public ResponseEntity update(@RequestBody Item item){
+        if (item.getId() == null){
+            return ResponseEntity.badRequest().build();
+        }
+        Item resoult = itemService.save(item);
+        return ResponseEntity.ok(resoult);
+
     }
 }
