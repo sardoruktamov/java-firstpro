@@ -28,6 +28,14 @@ public class ItemResource {
         }
         Item resoult = itemService.save(item);
         return ResponseEntity.ok(resoult);
+    }
 
+    @GetMapping("/items/{id}")
+    public ResponseEntity<Item> getOne(@PathVariable Long id){
+        if (itemService.findById(id) == null){
+            return ResponseEntity.badRequest().build();
+        }
+        Item resoult = itemService.findById(id);
+        return ResponseEntity.ok(resoult);
     }
 }
