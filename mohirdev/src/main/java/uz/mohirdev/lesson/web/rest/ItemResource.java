@@ -38,4 +38,10 @@ public class ItemResource {
         Item resoult = itemService.findById(id);
         return ResponseEntity.ok(resoult);
     }
+
+    @DeleteMapping("/items/{id}")
+    public ResponseEntity delete(@PathVariable Long id){
+        itemService.delete(id);
+        return ResponseEntity.ok("Item malumotlari o'chirildi!");
+    }
 }
