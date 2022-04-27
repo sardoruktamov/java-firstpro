@@ -6,6 +6,7 @@ import uz.mohirdev.lesson.entity.Employee;
 import uz.mohirdev.lesson.entity.Item;
 import uz.mohirdev.lesson.repository.ItemRepository;
 
+import javax.servlet.http.PushBuilder;
 import java.util.Optional;
 
 
@@ -28,5 +29,9 @@ public class ItemService {
             return optional.get();
         }
         return null;
+    }
+
+    public void delete(Long id){
+        itemRepository.deleteById(id);
     }
 }
