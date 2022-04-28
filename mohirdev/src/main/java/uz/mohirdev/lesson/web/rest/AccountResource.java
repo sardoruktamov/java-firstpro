@@ -1,10 +1,7 @@
 package uz.mohirdev.lesson.web.rest;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uz.mohirdev.lesson.entity.Account;
 import uz.mohirdev.lesson.service.AccountService;
 
@@ -22,5 +19,11 @@ public class AccountResource {
     public ResponseEntity create(@RequestBody Account account){
         Account result = accountService.save(account);
         return ResponseEntity.ok(result);
+    }
+
+    @DeleteMapping("/accounts/{id}")
+    public ResponseEntity delete(@PathVariable Long id){
+        accountService.delete(id);
+        return ResponseEntity.ok("Account o'chirildi");
     }
 }
