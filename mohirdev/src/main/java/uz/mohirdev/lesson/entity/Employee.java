@@ -33,6 +33,9 @@ public class Employee implements Serializable {
     @OneToMany
     private Set<Item> items;
 
+    @ManyToMany
+    private Set<Project> projects;
+
     public Long getId() {
         return id;
     }
@@ -87,5 +90,13 @@ public class Employee implements Serializable {
 
     public void setItems(Set<Item> items) {
         this.items = items;
+    }
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 }
