@@ -19,10 +19,12 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
+    // POST SAVE
     public Item save(Item item){
         return itemRepository.save(item);
     }
 
+    // GET ID
     public Item findById(Long id){
         Optional<Item> optional = itemRepository.findById(id);
         if (optional.isPresent()){
@@ -31,6 +33,7 @@ public class ItemService {
         return null;
     }
 
+    // DELETE
     public void delete(Long id){
         itemRepository.deleteById(id);
     }
