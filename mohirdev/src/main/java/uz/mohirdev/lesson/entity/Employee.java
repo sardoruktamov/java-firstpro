@@ -23,7 +23,7 @@ public class Employee implements Serializable {
     @Email
     private String email;
 
-    @ManyToOne
+    @ManyToOne  //name-jadval nomi,employee_id-birinchi ustun (id-qiymati),project_id-ikkinchi ustun
     @JoinTable(
             name = "dev_employee_project",
             joinColumns = {@JoinColumn(name = "employee_id", referencedColumnName = "id")},
