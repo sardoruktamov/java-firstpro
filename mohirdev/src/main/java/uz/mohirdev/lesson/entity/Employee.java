@@ -24,6 +24,11 @@ public class Employee implements Serializable {
     private String email;
 
     @ManyToOne
+    @JoinTable(
+            name = "dev_employee_project",
+            joinColumns = {@JoinColumn(name = "employee_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")}
+    )
     private Department department;
 
     @OneToOne(optional = false) //nullable = false va optional = false  larni vazifasi birxil(yani null!=0)
