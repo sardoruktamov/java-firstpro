@@ -21,4 +21,15 @@ public class FileStorageService {
         fileStorage.setContentType(multipartFile.getContentType());
         fileStorage.setFileStorageStatus(FileStorageStatus.DRAFT);
     }
+
+    private String getExt(String fileName){
+        String ext = null;
+
+        if (fileName != null && !fileName.isEmpty()){
+            int dot = fileName.lastIndexOf('.'); // nuqtagacha bolgan fayl nomini oldi
+            if(dot > 0 && dot <= fileName.length()-2){
+                ext = fileName.substring(dot+1);
+            }
+        }
+    }
 }
