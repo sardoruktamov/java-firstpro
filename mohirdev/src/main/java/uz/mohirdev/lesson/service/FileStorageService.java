@@ -25,6 +25,7 @@ public class FileStorageService {
         return fileStorage;
     }
 
+    //fayl extenshinini ajratib ollish
     private String getExt(String fileName){
         String ext = null;
 
