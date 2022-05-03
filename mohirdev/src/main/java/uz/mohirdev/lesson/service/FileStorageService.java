@@ -19,7 +19,10 @@ public class FileStorageService {
         fileStorage.setName(multipartFile.getOriginalFilename());
         fileStorage.setFileSize(multipartFile.getSize());
         fileStorage.setContentType(multipartFile.getContentType());
+        fileStorage.setExtention(getExt(multipartFile.getOriginalFilename()));
         fileStorage.setFileStorageStatus(FileStorageStatus.DRAFT);
+        fileStorage = fileStorageRepository.save(fileStorage);
+        return fileStorage;
     }
 
     private String getExt(String fileName){
@@ -31,5 +34,6 @@ public class FileStorageService {
                 ext = fileName.substring(dot+1);
             }
         }
+        return ext;
     }
 }
