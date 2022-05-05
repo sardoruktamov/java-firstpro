@@ -1,5 +1,6 @@
 package uz.mohirdev.lesson.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import uz.mohirdev.lesson.entity.FileStorage;
@@ -9,6 +10,10 @@ import uz.mohirdev.lesson.repository.FileStorageRepository;
 @Service
 public class FileStorageService {
     private final FileStorageRepository fileStorageRepository;
+
+    // applecation.yml faylidagi upload malumotini qaytaradi
+    @Value("${upload.server.folder}")   // serverFolderPath = /Users/DXM-HP/Documents/upload/
+    private String serverFolderPath;
 
     public FileStorageService(FileStorageRepository fileStorageRepository) {
         this.fileStorageRepository = fileStorageRepository;
@@ -22,6 +27,9 @@ public class FileStorageService {
         fileStorage.setExtention(getExt(multipartFile.getOriginalFilename()));
         fileStorage.setFileStorageStatus(FileStorageStatus.DRAFT);
         fileStorage = fileStorageRepository.save(fileStorage);
+
+        //bu yerda serverFolderPath-static path; upload_folder-dinamic path
+        // /serverFolderPath/upload_folder/2022/04/24/dsfsdvsd.pdf
         return fileStorage;
     }
 
