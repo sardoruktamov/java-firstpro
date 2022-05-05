@@ -59,6 +59,8 @@ public class FileStorageService {
             int dot = fileName.lastIndexOf('.'); // nuqtagacha bolgan fayl nomini oldi
             if(dot > 0 && dot <= fileName.length()-2){
                 ext = fileName.substring(dot+1);
+                System.out.println(ext+"+++++++++++++++++");
+                System.out.println(fileName.length()+"+++++++++++++++++");
             }
         }
         return ext;
