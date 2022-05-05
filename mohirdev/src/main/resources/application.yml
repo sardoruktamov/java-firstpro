@@ -12,3 +12,6 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQL92Dialect
     hibernate:
       ddl-auto: update
+upload:
+  server:
+    folder: /Users/DXM-HP/Documents/upload/
