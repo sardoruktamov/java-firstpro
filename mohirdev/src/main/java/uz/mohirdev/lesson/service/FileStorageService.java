@@ -1,5 +1,6 @@
 package uz.mohirdev.lesson.service;
 
+import org.hashids.Hashids;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,8 +19,11 @@ public class FileStorageService {
     @Value("${upload.server.folder}")   // serverFolderPath = /Users/DXM-HP/Documents/upload/
     private String serverFolderPath;
 
+    private final Hashids hashids;
+
     public FileStorageService(FileStorageRepository fileStorageRepository) {
         this.fileStorageRepository = fileStorageRepository;
+        this.hashids = new Hashids(getClass().getName(), 6);
     }
 
     public FileStorage save(MultipartFile multipartFile){
@@ -47,7 +51,9 @@ public class FileStorageService {
         if(!uploadFolder.exists() && uploadFolder.mkdir()){
             System.out.println("Created folred");
         }
-
+        fileStorage.setHashId(hashids.encode(fileStorage.getId()));
+        fileStorage.setUploadFolder(path + "/" + fileStorage.getHashId() +"."+ fileStorage.getExtention());
+        fileStorageRepository.save(fileStorage);
         return fileStorage;
     }
 
