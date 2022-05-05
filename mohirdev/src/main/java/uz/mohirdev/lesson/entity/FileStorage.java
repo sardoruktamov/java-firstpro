@@ -21,6 +21,7 @@ public class FileStorage implements Serializable {
     private String hashId;  // faylga takrorlanmas nom yasab chaqirish uchun
 
     private FileStorageStatus fileStorageStatus;
+    private String uploadFolder;
 
     public Long getId() {
         return id;
@@ -76,5 +77,13 @@ public class FileStorage implements Serializable {
 
     public void setFileStorageStatus(FileStorageStatus fileStorageStatus) {
         this.fileStorageStatus = fileStorageStatus;
+    }
+
+    public String getUploadFolder() {
+        return uploadFolder;
+    }
+
+    public void setUploadFolder(String uploadFolder) {
+        this.uploadFolder = uploadFolder;
     }
 }
