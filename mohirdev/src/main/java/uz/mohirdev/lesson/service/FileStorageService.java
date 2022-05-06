@@ -9,6 +9,7 @@ import uz.mohirdev.lesson.entity.enummration.FileStorageStatus;
 import uz.mohirdev.lesson.repository.FileStorageRepository;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 @Service
@@ -54,6 +55,15 @@ public class FileStorageService {
         fileStorage.setHashId(hashids.encode(fileStorage.getId()));
         fileStorage.setUploadFolder(path + "/" + fileStorage.getHashId() +"."+ fileStorage.getExtention());
         fileStorageRepository.save(fileStorage);
+
+        uploadFolder = uploadFolder.getAbsoluteFile(); // bu yerda to'liq PATH olinyapti
+        File file = new File(uploadFolder, String.format("%s.%s", fileStorage.getHashId(), fileStorage.getExtention()));
+
+        try {
+            multipartFile.transferTo(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return fileStorage;
     }
 
