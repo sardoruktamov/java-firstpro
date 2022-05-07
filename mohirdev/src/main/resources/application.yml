@@ -12,6 +12,10 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQL92Dialect
     hibernate:
       ddl-auto: update
+servlet:
+  multipart:
+    max-file-size: 1GB
+    max-request-size: 1GB
 upload:
   server:
     folder: /Users/DXM-HP/Documents/upload/
