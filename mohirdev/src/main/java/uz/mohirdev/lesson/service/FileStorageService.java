@@ -89,4 +89,8 @@ public class FileStorageService {
         }
         return ext;
     }
+
+    public FileStorage findByHashId(String hashId){
+        return fileStorageRepository.findByHashId(hashId);
+    }
 }
