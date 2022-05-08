@@ -44,4 +44,17 @@ public class FileStorageResource {
                 .contentLength(fileStorage.getFileSize())
                 .body(new FileUrlResource(String.format("%s/%s",this.serverFolderPath, fileStorage.getUploadFolder())));
     }
+
+    // hashId orqali fayllarni yuklab olish
+    @GetMapping("/download/{hashId}")
+    public ResponseEntity download(@PathVariable String hashId) throws MalformedURLException {
+        FileStorage fileStorage = fileStorageService.findByHashId(hashId); //fayl malumoti olindi
+
+        //"attachment;"  bo`lgan holatda fayllarni yuklash uchun ishlatamiz
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; fileName=\""+ UriEncoder.encode(fileStorage.getName()))
+                .contentType(MediaType.parseMediaType(fileStorage.getContentType()))
+                .contentLength(fileStorage.getFileSize())
+                .body(new FileUrlResource(String.format("%s/%s",this.serverFolderPath, fileStorage.getUploadFolder())));
+    }
 }
