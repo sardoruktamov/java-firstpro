@@ -48,12 +48,19 @@ public class FileStorageService {
         //formatni yozishning 2-usuli
         String path = String.format("%s/upload_files/%d/%d/%d", this.serverFolderPath, 1900+now.getYear(),
                 1 + now.getMonth(),now.getDate());
+        System.out.println(path+"###############");
         File uploadFolder = new File(path);
         if(!uploadFolder.exists() && uploadFolder.mkdirs()){
-            System.out.println("Created folred");
+            System.out.println("Papka yaratildi!");
         }
         fileStorage.setHashId(hashids.encode(fileStorage.getId()));
-        fileStorage.setUploadFolder(path + "/" + fileStorage.getHashId() +"."+ fileStorage.getExtention());
+        String pathLocal = String.format("/upload_files/%d/%d/%d/%s.%s",
+                1900+now.getYear(),
+                1 + now.getMonth(),
+                now.getDate(),
+                fileStorage.getHashId(),
+                fileStorage.getExtention());
+        fileStorage.setUploadFolder(pathLocal);
         fileStorageRepository.save(fileStorage);
 
         uploadFolder = uploadFolder.getAbsoluteFile(); // bu yerda to'liq PATH olinyapti
