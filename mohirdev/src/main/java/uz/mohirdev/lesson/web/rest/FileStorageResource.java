@@ -57,4 +57,10 @@ public class FileStorageResource {
                 .contentLength(fileStorage.getFileSize())
                 .body(new FileUrlResource(String.format("%s/%s",this.serverFolderPath, fileStorage.getUploadFolder())));
     }
+
+    @DeleteMapping("/delete/{hashId}")
+    public ResponseEntity delete(@PathVariable String hashId){
+        fileStorageService.delete(hashId);
+        return ResponseEntity.ok("fayl o'chirildi!");
+    }
 }
