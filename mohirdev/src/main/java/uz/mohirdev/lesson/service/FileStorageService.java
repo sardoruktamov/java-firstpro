@@ -49,7 +49,7 @@ public class FileStorageService {
         String path = String.format("%s/upload_files/%d/%d/%d", this.serverFolderPath, 1900+now.getYear(),
                 1 + now.getMonth(),now.getDate());
         File uploadFolder = new File(path);
-        if(!uploadFolder.exists() && uploadFolder.mkdir()){
+        if(!uploadFolder.exists() && uploadFolder.mkdirs()){
             System.out.println("Created folred");
         }
         fileStorage.setHashId(hashids.encode(fileStorage.getId()));
@@ -72,10 +72,11 @@ public class FileStorageService {
         String ext = null;
 
         if (fileName != null && !fileName.isEmpty()){
-            int dot = fileName.lastIndexOf('.'); // nuqtagacha bolgan fayl nomini oldi
+            int dot = fileName.lastIndexOf('.'); // oxirgi nuqtagacha bolgan fayl nomini oldi
+            System.out.println(dot+"+++++++++++************");
             if(dot > 0 && dot <= fileName.length()-2){
                 ext = fileName.substring(dot+1);
-                System.out.println(ext+"+++++++++++++++++");
+                System.out.println(ext+"+++++++++++-------");
                 System.out.println(fileName.length()+"+++++++++++++++++");
             }
         }
