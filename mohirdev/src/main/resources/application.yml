@@ -16,6 +16,8 @@ spring:
     multipart:
       max-file-size: 1GB
       max-request-size: 1GB
+api:
+  jsonplaceholder: https://jsonplaceholder.typicode.com/
 upload:
   server:
-    folder: /Users/DXM-HP/Documents/upload/
+    folder: C:/Users/DXM-HP/Documents/upload/
