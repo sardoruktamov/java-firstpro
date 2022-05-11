@@ -18,18 +18,22 @@ public class PostService {
     // boshqa tashqi serverdagi servislarga ulanish uchun RestTemplatedan foydalanamiz
     private final RestTemplate restTemplate;
 
+    private final PostDateService postDateService;
+
     @Value("${api.jsonplaceholder}")
     private String api;
 
-    public PostService(RestTemplate restTemplate) {
+    public PostService(RestTemplate restTemplate, PostDateService postDateService) {
         this.restTemplate = restTemplate;
+        this.postDateService = postDateService;
     }
 
-    public List<Post> findAll(){
+    public Object findAll(){
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity<List<Post>> entity = new HttpEntity<>(headers);
-        List<Post> resoult = restTemplate.exchange(this.api + "/posts", HttpMethod.GET, entity, List.class).getBody();
+        HttpEntity<Post[]> entity = new HttpEntity<>(headers);
+        Post[] resoult = restTemplate.exchange(this.api + "/posts", HttpMethod.GET, entity, Post[].class).getBody();
+        postDateService.saveAll(resoult);
         return resoult;
     }
 }
