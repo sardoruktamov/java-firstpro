@@ -28,12 +28,21 @@ public class PostService {
         this.postDateService = postDateService;
     }
 
+    //post request
+    public Post save(Post post){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Post> entity = new HttpEntity<>(post, headers);
+        Post result = restTemplate.postForObject(api + "/posts", entity,Post.class);
+        return result;
+    }
+
     public Object findAll(){
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<Post[]> entity = new HttpEntity<>(headers);
-        Post[] resoult = restTemplate.exchange(this.api + "/posts", HttpMethod.GET, entity, Post[].class).getBody();
-        postDateService.saveAll(resoult);
-        return resoult;
+        Post[] result = restTemplate.exchange(this.api + "/posts", HttpMethod.GET, entity, Post[].class).getBody();
+        postDateService.saveAll(result);
+        return result;
     }
 }
