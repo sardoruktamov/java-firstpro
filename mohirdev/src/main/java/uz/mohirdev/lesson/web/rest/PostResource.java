@@ -1,9 +1,7 @@
 package uz.mohirdev.lesson.web.rest;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uz.mohirdev.lesson.model.Post;
 import uz.mohirdev.lesson.service.PostService;
 
@@ -17,6 +15,12 @@ public class PostResource {
 
     public PostResource(PostService postService) {
         this.postService = postService;
+    }
+
+    @PostMapping("/posts")
+    public ResponseEntity create(@RequestBody Post post){
+        Post result = postService.save(post);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/posts")
