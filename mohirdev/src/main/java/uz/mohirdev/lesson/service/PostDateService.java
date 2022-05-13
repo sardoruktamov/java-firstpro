@@ -17,7 +17,7 @@ public class PostDateService {
         this.postDateRepository = postDateRepository;
     }
 
-    // bittalik malumotni saqlash.  23-qatordagi funksiyadan malumot keladi
+    // bittalik malumotni saqlash.
     public PostDate save(PostDate postDate){
         return postDateRepository.save(postDate);
     }
