@@ -1,5 +1,6 @@
 package uz.mohirdev.lesson.service;
 
+import org.springframework.stereotype.Service;
 import uz.mohirdev.lesson.entity.PostDate;
 import uz.mohirdev.lesson.model.Post;
 import uz.mohirdev.lesson.repository.PostDateRepository;
@@ -7,7 +8,7 @@ import uz.mohirdev.lesson.repository.PostDateRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Service
 public class PostDateService {
 
     private final PostDateRepository postDateRepository;
