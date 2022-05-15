@@ -18,6 +18,7 @@ spring:
       max-request-size: 1GB
 api:
   jsonplaceholder: https://jsonplaceholder.typicode.com/
+  publicholidays: https://date.nager.at/
 upload:
   server:
-    folder: C:/Users/DXM-HP/Documents/upload/
+    folder: C:/Users/Asus/Documents/upload
