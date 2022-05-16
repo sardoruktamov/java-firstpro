@@ -6,6 +6,4 @@ import uz.mohirdev.lesson.entity.HolidayDate;
 
 @Repository
 public interface HolidayDateRepository extends JpaRepository<HolidayDate, Long> {
-
-    private
 }
