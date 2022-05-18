@@ -21,7 +21,7 @@ public class HolidayResource {
 
     @GetMapping("/holidays")
     public ResponseEntity getAll(){
-        List<Holiday> result = holidayService.findAll();
+        Object result = holidayService.findAll();
         return ResponseEntity.ok(result);
     }
 }
