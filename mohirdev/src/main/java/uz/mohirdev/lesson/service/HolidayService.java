@@ -16,19 +16,23 @@ import java.util.List;
 public class HolidayService {
     private final RestTemplate restTemplate;
 
+    private final HolidayDateService holidayDateService;
+
     @Value("${api.publicholidays}")
     private String api;
 
 
-    public HolidayService(RestTemplate restTemplate) {
+    public HolidayService(RestTemplate restTemplate, HolidayDateService holidayDateService) {
         this.restTemplate = restTemplate;
+        this.holidayDateService = holidayDateService;
     }
 
-    public List<Holiday> findAll(){
+    public Object findAll(){
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity<List<Holiday>> entity = new HttpEntity<>(headers);
-        List<Holiday> result = restTemplate.exchange(this.api+"/api/v2/publicholidays/2020/US", HttpMethod.GET, entity, List.class).getBody();
+        HttpEntity<Holiday[]> entity = new HttpEntity<>(headers);
+        Holiday[] result = restTemplate.exchange(this.api+"/api/v2/publicholidays/2020/US", HttpMethod.GET, entity, Holiday[].class).getBody();
+        holidayDateService.saveAll(result);
         System.out.println(api);
         System.out.println(result);
         return result;
