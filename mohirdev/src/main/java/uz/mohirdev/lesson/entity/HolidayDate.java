@@ -1,9 +1,6 @@
 package uz.mohirdev.lesson.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.List;
@@ -21,9 +18,18 @@ public class HolidayDate implements Serializable {
     private String countryCode;
     private Boolean fixed ;
     private Boolean global;
-    private Set<Counties> counties;
+    @ManyToMany
+    private List<Counties> counties;
     private String launchYear;
     private String type;
+
+    public List<Counties> getCounties() {
+        return counties;
+    }
+
+    public void setCounties(List<Counties> counties) {
+        this.counties = counties;
+    }
 
     public Long getId() {
         return id;
@@ -81,13 +87,8 @@ public class HolidayDate implements Serializable {
         this.global = global;
     }
 
-    public Set<Counties> getCounties() {
-        return counties;
-    }
 
-    public void setCounties(Set<Counties> counties) {
-        this.counties = counties;
-    }
+
 
     public String getLaunchYear() {
         return launchYear;
