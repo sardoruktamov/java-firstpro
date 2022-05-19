@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class HolidayDate implements Serializable {
@@ -20,7 +21,7 @@ public class HolidayDate implements Serializable {
     private String countryCode;
     private Boolean fixed ;
     private Boolean global;
-    private List counties;
+    private Set<Counties> counties;
     private String launchYear;
     private String type;
 
@@ -80,11 +81,11 @@ public class HolidayDate implements Serializable {
         this.global = global;
     }
 
-    public List getCounties() {
+    public Set<Counties> getCounties() {
         return counties;
     }
 
-    public void setCounties(List counties) {
+    public void setCounties(Set<Counties> counties) {
         this.counties = counties;
     }
 
