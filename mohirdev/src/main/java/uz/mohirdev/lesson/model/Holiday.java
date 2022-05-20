@@ -1,5 +1,8 @@
 package uz.mohirdev.lesson.model;
 
+import uz.mohirdev.lesson.entity.Counties;
+
+import javax.persistence.ManyToMany;
 import java.time.Instant;
 import java.util.List;
 
@@ -11,7 +14,8 @@ public class Holiday {
     private String countryCode;
     private Boolean fixed ;
     private Boolean global;
-    private List counties;
+    @ManyToMany
+    private List<Counties> counties;
     private String launchYear;
     private String type;
 
@@ -71,11 +75,11 @@ public class Holiday {
         this.global = global;
     }
 
-    public List getCounties() {
+    public List<Counties> getCounties() {
         return counties;
     }
 
-    public void setCounties(List counties) {
+    public void setCounties(List<Counties> counties) {
         this.counties = counties;
     }
 
