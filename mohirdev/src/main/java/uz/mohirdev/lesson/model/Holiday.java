@@ -1,5 +1,6 @@
 package uz.mohirdev.lesson.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import uz.mohirdev.lesson.entity.Counties;
 
 import javax.persistence.ManyToMany;
@@ -8,7 +9,8 @@ import java.util.List;
 
 public class Holiday {
     private Long id;
-    private Instant date;
+//    @JsonFormat(pattern="yyyy-MM-dd")
+    private String date;
     private String localName;
     private String name;
     private String countryCode;
@@ -27,11 +29,11 @@ public class Holiday {
         this.id = id;
     }
 
-    public Instant getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
