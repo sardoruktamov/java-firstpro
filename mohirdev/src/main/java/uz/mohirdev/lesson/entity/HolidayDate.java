@@ -1,5 +1,7 @@
 package uz.mohirdev.lesson.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
@@ -12,7 +14,8 @@ public class HolidayDate implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Instant date;
+//    @JsonFormat(pattern="yyyy-MM-dd")
+    private String date;
     private String localName;
     private String name;
     private String countryCode;
@@ -39,11 +42,11 @@ public class HolidayDate implements Serializable {
         this.id = id;
     }
 
-    public Instant getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
