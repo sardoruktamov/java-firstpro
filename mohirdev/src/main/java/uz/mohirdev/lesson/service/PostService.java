@@ -55,4 +55,16 @@ public class PostService {
         postDateService.saveAll(result);
         return result;
     }
+
+    public List<Post> findAllByQyeryParam(Long postId){
+        HttpEntity<List<Post>> entity = new HttpEntity<>(getHeader());
+        List<Post> result = restTemplate.exchange(this.api + "/posts", HttpMethod.GET, entity, List.class).getBody();
+        return result;
+    }
+
+    private HttpHeaders getHeader(){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        return headers;
+    }
 }
