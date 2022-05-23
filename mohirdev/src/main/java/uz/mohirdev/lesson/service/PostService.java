@@ -38,6 +38,15 @@ public class PostService {
         return result;
     }
 
+    public Post update(Long id, Post post){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Post> entity = new HttpEntity<>(post, headers);
+        Post result = restTemplate.postForObject(api + "/posts/"+id+"/comments", entity,Post.class);
+        System.out.println(result+"********************"+api);
+        return result;
+    }
+
     public Object findAll(){
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
