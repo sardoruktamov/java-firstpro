@@ -32,7 +32,11 @@ public class PostResource {
         return ResponseEntity.ok(result);
     }
 
-    
+    // ishlatish uchun postmanda params malumotlariga 2 ta qiymat yozamiz
+    //page = 0      --> birinchi element(sahifa) hissoblanadi
+    //size = 20
+    //sort = id,desc yoki asc
+    // http://localhost:8080/api/posts/paging?page=0&size=20
     @GetMapping("/posts/paging")
     public ResponseEntity getAllByPaging(Pageable pageable){
         Page<PostDate> result = postService.findAll(pageable);
