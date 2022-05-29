@@ -1,6 +1,9 @@
 package uz.mohirdev.lesson.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import uz.mohirdev.lesson.entity.PostDate;
 import uz.mohirdev.lesson.model.Post;
 import uz.mohirdev.lesson.repository.PostDateRepository;
@@ -35,5 +38,9 @@ public class PostDateService {
         return postDateRepository.saveAll(postDateList);
     }
 
+    @Transactional(readOnly = true)
+    public Page<PostDate> findAll(Pageable pageable){
+        return postDateRepository.findAll(pageable);
+    }
 
 }
