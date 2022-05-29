@@ -1,7 +1,10 @@
 package uz.mohirdev.lesson.web.rest;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uz.mohirdev.lesson.entity.PostDate;
 import uz.mohirdev.lesson.model.Post;
 import uz.mohirdev.lesson.service.PostService;
 
@@ -29,6 +32,12 @@ public class PostResource {
         return ResponseEntity.ok(result);
     }
 
+    
+    @GetMapping("/posts/paging")
+    public ResponseEntity getAllByPaging(Pageable pageable){
+        Page<PostDate> result = postService.findAll(pageable);
+        return ResponseEntity.ok(result);
+    }
     @GetMapping("/posts")
     public ResponseEntity getAll(){
         Object result = postService.findAll();
