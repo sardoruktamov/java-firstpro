@@ -1,6 +1,8 @@
 package uz.mohirdev.lesson.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -8,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import uz.mohirdev.lesson.entity.PostDate;
 import uz.mohirdev.lesson.model.Post;
 
 import java.util.Arrays;
@@ -76,5 +79,9 @@ public class PostService {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         return headers;
+    }
+
+    public Page<PostDate> findAll(Pageable pageable){
+        return postDateService.findAll(pageable);
     }
 }
