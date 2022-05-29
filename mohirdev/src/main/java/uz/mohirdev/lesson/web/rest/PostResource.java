@@ -23,6 +23,11 @@ public class PostResource {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/posts/params")
+    public ResponseEntity getAllByParam(@RequestParam Long postId){
+        List<Post> result = postService.findAllByQyeryParam(postId);
+        return ResponseEntity.ok(result);
+    }
     @GetMapping("/posts")
     public ResponseEntity getAll(){
         Object result = postService.findAll();
