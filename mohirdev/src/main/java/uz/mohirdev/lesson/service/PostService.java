@@ -58,9 +58,10 @@ public class PostService {
         return result;
     }
 
+    // ushbu methoddan boshqa loyihalarda ham kerakli URLlarni yasab olishimiz mumkin
     public List<Post> findAllByQyeryParam(Long postId){
         HttpEntity<List<Post>> entity = new HttpEntity<>(getHeader());
-        String urlTemplate = UriComponentsBuilder.fromHttpUrl(this.api + "/posts")
+        String urlTemplate = UriComponentsBuilder.fromHttpUrl(this.api + "/comments")
                 .queryParam("postId", "{postId}")
                 .encode()
                 .toUriString();
