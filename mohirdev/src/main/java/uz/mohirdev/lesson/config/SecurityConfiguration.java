@@ -27,6 +27,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/api/posts/paging/**").hasRole("ADMIN") //**-bu cheksiz url yozish mumkin
+        //        .antMatchers("/api/posts").hasRole("USER") // bu URLga USERga ruxsat berildi
+                .antMatchers("/api/posts").hasAnyRole("ADMIN", "USER") // bu URLga USERga ruxsat berildi
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();
