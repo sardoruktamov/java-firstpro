@@ -26,6 +26,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf()
+                .disable()      // csrf o'chirildi
+                .headers()
+                .frameOptions()
+                .disable()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/api/posts/paging/**").hasRole("ADMIN") //**-bu cheksiz url yozish mumkin
         //        .antMatchers("/api/posts").hasRole("USER") // bu URLga USERga ruxsat berildi
