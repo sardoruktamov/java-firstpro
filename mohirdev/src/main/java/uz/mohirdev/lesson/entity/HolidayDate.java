@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +24,7 @@ public class HolidayDate implements Serializable {
     private Boolean fixed ;
     private Boolean global;
     @ManyToMany
-    private List<Counties> counties;
+    private List<Counties> counties = new LinkedList<>();
     private String launchYear;
     private String type;
 
