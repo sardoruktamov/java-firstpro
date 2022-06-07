@@ -37,7 +37,7 @@ public class User implements Serializable {
 
     private String langKey;  // site language
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
             joinColumns = {@JoinColumn(name = "uesr_id", referencedColumnName = "id")},
