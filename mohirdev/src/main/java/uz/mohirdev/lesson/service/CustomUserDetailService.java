@@ -5,6 +5,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import uz.mohirdev.lesson.entity.Role;
 import uz.mohirdev.lesson.entity.User;
 import uz.mohirdev.lesson.repository.UserRepository;
@@ -12,6 +13,7 @@ import uz.mohirdev.lesson.repository.UserRepository;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+@Component
 public class CustomUserDetailService implements UserDetailsService {
 
     private final UserRepository userRepository;
