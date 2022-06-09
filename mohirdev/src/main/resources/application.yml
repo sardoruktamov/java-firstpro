@@ -22,3 +22,7 @@ api:
 upload:
   server:
     folder: C:/Users/Asus/Documents/upload
+jwt:
+  token:
+    secret: salomjwttoken
+    validity: 86400000   # 86400 sekunt-1 kun ( bu yerda milliy sekunt) JWTtoken 1-qadam
