@@ -21,17 +21,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         this.userDetailsService = userDetailsService;
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    //jwttoken 4 qadamda configure() kerak emas comentaryaga olamiz
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+//                .userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 
-//                .inMemoryAuthentication()   //malumotlar bilan ishlash uhcun
-//                .withUser("admin").password(passwordEncoder().encode("1234")).roles("ADMIN")
-//                .and()
-//                .withUser("user").password(passwordEncoder().encode("1234")).roles("USER");
+//  //              .inMemoryAuthentication()   //malumotlar bilan ishlash uhcun
+//  //              .withUser("admin").password(passwordEncoder().encode("1234")).roles("ADMIN")
+//  //              .and()
+//  //              .withUser("user").password(passwordEncoder().encode("1234")).roles("USER");
 
-    }
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -54,9 +55,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
+    //jwttoken 5 qadamda configure() kerak emas comentaryaga olamiz va JwtProvide.class ga yozib qoyamiz
     // parolni encode qilish
-    @Bean
-    PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    PasswordEncoder passwordEncoder(){
+//        return new BCryptPasswordEncoder();
+//    }
 }
