@@ -5,6 +5,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -14,6 +16,7 @@ import javax.annotation.PostConstruct;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtProvider {
@@ -32,8 +35,12 @@ public class JwtProvider {
         this.secret = Base64.getEncoder().encodeToString(secret.getBytes());
     }
 
-
-    public String createToken(String username, Set<Role> roles){
+    //  JWTtoken 10-qadam
+    public String createToken(String username, Authentication authentication){
+        // authentication ichidan role ni ajratib olish
+        String roles = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(","));
         // JWTga solinishi kk bolgan malumotlar solindi(username va rules)
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("roles", roles);   // qoshimchasiga bu yerda userga tegishli barcha narsani kiritish mn
@@ -45,7 +52,7 @@ public class JwtProvider {
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(validity)
-                .signWith(SignatureAlgorithm.ES256, this.secret)   // ES256 algoritm boyicha shirflashni belgilash
+                .signWith(SignatureAlgorithm.HS256, this.secret)   // HS256 algoritm boyicha shirflashni belgilash
                 .compact();
 
     }
