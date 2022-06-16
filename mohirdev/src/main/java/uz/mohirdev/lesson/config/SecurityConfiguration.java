@@ -50,6 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/posts").permitAll()  // barchaga ruxsat uchun URL
                 .antMatchers("/api/register").permitAll()  // barchaga ruxsat uchun URL
                 .antMatchers("/api/holidays").permitAll()  // barchaga ruxsat uchun URL
+                .antMatchers("/api/authenticate").permitAll()  // barchaga ruxsat uchun URL
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();
