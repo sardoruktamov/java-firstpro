@@ -1,9 +1,13 @@
 package uz.mohirdev.lesson.web.rest.vm;
 
+import javax.validation.constraints.NotNull;
+
 // JWT token 8-qadam
 public class LoginVM {
 
+    @NotNull
     private String login;
+    @NotNull
     private String password;
 
     public String getLogin() {
