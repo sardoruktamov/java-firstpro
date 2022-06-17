@@ -1,5 +1,7 @@
 package uz.mohirdev.lesson.web.rest;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -39,7 +41,31 @@ public class UserJWTController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         // endigi navbat JWT yasaymiz
         String jwt = jwtProvider.createToken(loginVM.getLogin(), authentication);
-        return ResponseEntity.ok(jwt);
+//        return ResponseEntity.ok();
+
+        //Jwt  11.1-qadam, headersga qoshib yuboramiz tokenni
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer  " + jwt);
+
+        // headers va bodyga malumot yuborish
+        return new ResponseEntity(new JWTToken(jwt), headers, HttpStatus.OK);
+    }
+
+    //JWT 11-qadam
+    static class JWTToken{
+        private String idToken;
+
+        public String getIdToken() {
+            return idToken;
+        }
+
+        public void setIdToken(String idToken) {
+            this.idToken = idToken;
+        }
+
+        public JWTToken(String idToken) {
+            this.idToken = idToken;
+        }
     }
 }
 

@@ -47,12 +47,7 @@ public class JwtProvider {
         // tokenni yashash muddatini qoyish
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityMilliSecond); //hozirgi vaqtdan boshlab 1 kun
-//        Jwts.builder()
-//                .setClaims(claims)
-//                .setIssuedAt(now)
-//                .setExpiration(validity)
-//                .signWith(SignatureAlgorithm.HS256, this.secret)   // HS256 algoritm boyicha shirflashni belgilash
-//                .compact();
+
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
