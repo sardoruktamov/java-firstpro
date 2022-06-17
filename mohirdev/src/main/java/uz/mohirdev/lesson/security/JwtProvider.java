@@ -27,7 +27,7 @@ public class JwtProvider {
     private String secret;
 
     @Value("${jwt.token.validity}")
-    private String validityMilliSecond;
+    private Long validityMilliSecond;
 
     // secret kalitimizni baytcodega o`tkazib olish (xavfsizlikni kuchaytirish)
     @PostConstruct
@@ -44,10 +44,15 @@ public class JwtProvider {
         // JWTga solinishi kk bolgan malumotlar solindi(username va rules)
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("roles", roles);   // qoshimchasiga bu yerda userga tegishli barcha narsani kiritish mn
-
         // tokenni yashash muddatini qoyish
         Date now = new Date();
-        Date validity = new Date(now.getTime()+validityMilliSecond); //hozirgi vaqtdan boshlab 1 kun
+        Date validity = new Date(now.getTime() + validityMilliSecond); //hozirgi vaqtdan boshlab 1 kun
+//        Jwts.builder()
+//                .setClaims(claims)
+//                .setIssuedAt(now)
+//                .setExpiration(validity)
+//                .signWith(SignatureAlgorithm.HS256, this.secret)   // HS256 algoritm boyicha shirflashni belgilash
+//                .compact();
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
