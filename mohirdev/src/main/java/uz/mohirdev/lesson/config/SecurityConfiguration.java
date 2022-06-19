@@ -1,15 +1,13 @@
 package uz.mohirdev.lesson.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import uz.mohirdev.lesson.security.JWTConfigere;
+import uz.mohirdev.lesson.security.JwtProvider;
 
 @Configuration
 @EnableWebSecurity
@@ -17,8 +15,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
-    public SecurityConfiguration(@Lazy UserDetailsService userDetailsService) {
+    //46-dars
+    private final JwtProvider jwtProvider;
+
+    public SecurityConfiguration(@Lazy UserDetailsService userDetailsService, JwtProvider jwtProvider) {
         this.userDetailsService = userDetailsService;
+        this.jwtProvider = jwtProvider;
     }
 
     //jwttoken 4 qadamda configure() kerak emas comentaryaga olamiz
@@ -44,16 +46,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .disable()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/posts/paging/**").hasRole("ADMIN") //**-bu cheksiz url yozish mumkin
+                .antMatchers("/api/posts/paging/**").hasRole("USER") //**-bu cheksiz url yozish mumkin
         //        .antMatchers("/api/posts").hasRole("USER") // bu URLga USERga ruxsat berildi
                 .antMatchers("/api/posts").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/api/posts").permitAll()  // barchaga ruxsat uchun URL
+//                .antMatchers("/api/posts").permitAll()  // barchaga ruxsat uchun URL
                 .antMatchers("/api/register").permitAll()  // barchaga ruxsat uchun URL
                 .antMatchers("/api/holidays").permitAll()  // barchaga ruxsat uchun URL
                 .antMatchers("/api/authenticate").permitAll()  // barchaga ruxsat uchun URL
                 .anyRequest().authenticated()
                 .and()
-                .httpBasic();
+                .httpBasic()
+                .and()  //46-dars
+                .apply(securityConfigurerAdapter());
+
+    }
+
+    //46-dars
+    private JWTConfigere securityConfigurerAdapter(){
+        return new JWTConfigere(jwtProvider);
     }
 
     //jwttoken 5 qadamda configure() kerak emas comentaryaga olamiz va JwtProvide.class ga yozib qoyamiz
