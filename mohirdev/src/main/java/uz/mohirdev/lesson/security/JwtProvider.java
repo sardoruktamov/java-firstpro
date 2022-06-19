@@ -1,21 +1,23 @@
 package uz.mohirdev.lesson.security;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import uz.mohirdev.lesson.entity.Role;
 
 import javax.annotation.PostConstruct;
 import java.util.Base64;
 import java.util.Date;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
@@ -28,6 +30,12 @@ public class JwtProvider {
 
     @Value("${jwt.token.validity}")
     private Long validityMilliSecond;
+
+    private final UserDetailsService userDetailsService;
+
+    public JwtProvider(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     // secret kalitimizni baytcodega o`tkazib olish (xavfsizlikni kuchaytirish)
     @PostConstruct
@@ -55,6 +63,29 @@ public class JwtProvider {
                 .signWith(SignatureAlgorithm.HS256, this.secret)   // HS256 algoritm boyicha shirflashni belgilash
                 .compact();
 
+    }
+
+    //spring 46-dars 2.00
+    public Authentication getAuthentication(String token){
+        UserDetails userDetails = userDetailsService.loadUserByUsername(getUsername(token));
+        return new UsernamePasswordAuthenticationToken(userDetails,"",userDetails.getAuthorities());
+    }
+    // kelayotgan tokendan usernameni olish
+    private String getUsername(String token){
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
+    }
+
+    //spring 45-dars 8.00 tokenni uddatini tekshirish
+    public boolean validateToken(String token){
+        try {
+            Jws<Claims> claimsJws = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token);
+            if (claimsJws.getBody().getExpiration().before(new Date())){
+                return false;
+            }
+        }catch (IllegalArgumentException e){
+            e.printStackTrace();
+        }
+        return true;
     }
 
     // parolni encode qilish (JWTtoken 6-qadam)
